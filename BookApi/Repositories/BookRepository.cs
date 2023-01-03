@@ -1,7 +1,11 @@
-﻿using BookApi.Models;
+﻿using BooksAPI.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace BookApi.Repositories
+namespace BooksAPI.Repositories
 {
     public class BookRepository : IBookRepository
     {
@@ -11,7 +15,6 @@ namespace BookApi.Repositories
         {
             _context = context;
         }
-
         public async Task<Book> Create(Book book)
         {
             _context.Books.Add(book);
@@ -22,8 +25,8 @@ namespace BookApi.Repositories
 
         public async Task Delete(int id)
         {
-            var BookToDelete = await _context.Books.FindAsync(id);
-            _context.Books.Remove(BookToDelete);
+            var bookToDelete = await _context.Books.FindAsync(id);
+            _context.Books.Remove(bookToDelete);
             await _context.SaveChangesAsync();
         }
 
@@ -34,7 +37,7 @@ namespace BookApi.Repositories
 
         public async Task<Book> Get(int id)
         {
-            return await _context.FindAsync(id);
+            return await _context.Books.FindAsync(id);
         }
 
         public async Task Update(Book book)

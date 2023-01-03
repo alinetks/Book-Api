@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace BookApi.Models
+namespace BooksAPI.Model
 {
     public class BookContext : DbContext
     {
@@ -9,11 +13,6 @@ namespace BookApi.Models
             Database.EnsureCreated();
         }
 
-        public DbSet<Book> Books { get; set;}
-
-        internal Task<Book> FindAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public DbSet<Book> Books { get; set; }
     }
 }
